@@ -57,20 +57,20 @@ function personaje(x, y, ancho, alto, img) {
   // dimensiones del personaje
   this.ancho = ancho;
   this.alto = alto;
-  // imagen del persoanje
+  // imagen del personaje
   this.img = img;
-
   // Metodos
-  // mueve a la izquierda y derecha
+  // mueve a la izquierda, pero no permite que x sea menor a 0
   this.left = function () {
-    this.x -= 15;
+    this.x = Math.max(0, this.x - 15); // Evita que el personaje salga del borde izquierdo
   };
+  // mueve a la derecha, pero no permite que x exceda el ancho del canvas
   this.right = function () {
-    this.x += 15;
+    this.x = Math.min(canvas.width - this.ancho, this.x + 15); // Evita que el personaje salga del borde derecho
   };
   // dibuja la imagen del personaje en el canvas
   this.dibujar = function () {
-    //drawImage funcion propia de js que recibe estos parametros
+    // drawImage funcion propia de js que recibe estos parametros
     ctx.drawImage(this.img, this.x, this.y, this.ancho, this.alto);
   };
 }
